@@ -1,5 +1,6 @@
 import client from "@/lib/mongodb"; 
 import {NextResponse} from "next/server";
+import bcrypt from "bcrypt";
 
 export async function POST(request:Request) {
 
@@ -17,6 +18,7 @@ export async function POST(request:Request) {
 
      const db = client.db("auth-app");
      const usersCollection = db.collection("users");
+
      const existingUser = await usersCollection.findOne({email,});
      if (existingUser) {
       return NextResponse.json(
@@ -28,8 +30,9 @@ export async function POST(request:Request) {
         }
     );
   }
+     const hashedPassword = await bcrypt.hash(password, 10);
 
-     await usersCollection.insertOne({ name, email, password,});
+     await usersCollection.insertOne({ name, email, password: hashedPassword, });
 
     return NextResponse.json({ message: "User created successfully!"});
 }
