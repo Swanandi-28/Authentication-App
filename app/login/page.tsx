@@ -60,8 +60,6 @@ export default function LoginPage() {
             setPassword("");
 
         router.push("/dashboard");
-        
-        alert("Login successful!");
         } catch(error){
             console.error(error);
             setError("An error occurred. Please try again later.");
