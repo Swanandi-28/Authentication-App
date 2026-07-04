@@ -40,6 +40,7 @@ export async function POST(request: Request){
     const token = jwt.sign(
     { 
         email:user.email,
+        name:user.name,
     },
     process.env.JWT_SECRET!,
     {

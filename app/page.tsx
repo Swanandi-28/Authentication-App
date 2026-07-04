@@ -6,7 +6,7 @@ export default function Home() {
       <div className="bg-gray-300 shadow-lg rounded-xl p-10 w-full max-w-md text-center">
 
         <h1 className="text-4xl font-bold text-black mb-4">
-          Authentication App
+          Authentication Page
         </h1>
 
         <p className="text-gray-600 mb-8">

@@ -94,9 +94,12 @@ export default function LoginPage() {
                    placeholder="Enter Your Password"
                    value={password}
                    onChange={(e) => setPassword(e.target.value)}
-                   className="w-full border rounded-lg p-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-500">
+                   className="w-full border rounded-lg p-3 pr-12 text-black focus:outline-none focus:ring-2 focus:ring-blue-500">
             </input>
-            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 pr-3 flex items-center">
+            <button 
+                 type="button" 
+                 onClick={() => setShowPassword(!showPassword)} 
+                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black">
               {showPassword ? <EyeOff /> : <Eye />}
             </button>
           </div>
