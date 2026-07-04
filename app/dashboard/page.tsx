@@ -33,7 +33,7 @@ return(
     <>
     <div className="flex flex-col items-center justify-center min-h-screen py-2 space-y-6 bg-gray-900">
         <h1 className="text-4xl font-bold mb-4">Dashboard</h1>
-        <p className="text-lg">Welcome Back, {name}!</p>
+        <p className="text-lg">Welcome, {name}!</p>
         <button onClick={() => {
         localStorage.removeItem("token");
         router.push("/login");
