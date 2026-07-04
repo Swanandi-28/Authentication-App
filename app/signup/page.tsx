@@ -3,6 +3,7 @@
 import {useState}from "react";
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
+import {useRouter} from "next/navigation";
 
 export default function SignupPage() {
     const [name, setName]= useState("");
@@ -13,6 +14,7 @@ export default function SignupPage() {
     const [error,setError]= useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = async(e:React.FormEvent<HTMLFormElement>) => { 
       e.preventDefault();
@@ -59,6 +61,7 @@ export default function SignupPage() {
       }
 
       alert("Account created successfully!");
+      router.push("/login");
        }catch(error){
         console.error(error);
         setError("An error occurred. Please try again later.");

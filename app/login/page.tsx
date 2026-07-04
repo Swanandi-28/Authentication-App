@@ -3,6 +3,7 @@
 import {useState}from "react";
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
+import {useRouter} from "next/navigation";
 
 export default function LoginPage() {
     const [email,setEmail]= useState("");
@@ -10,6 +11,8 @@ export default function LoginPage() {
 
     const [error,setError]= useState("");
     const [showPassword, setShowPassword] = useState(false);
+
+    const router = useRouter();
 
     const handleLogin = async( e: React.FormEvent<HTMLFormElement>) => {
 
@@ -49,12 +52,14 @@ export default function LoginPage() {
             return;
         }
 
-        localStorage.setIteam("token",data.token);
-
+        localStorage.setItem("token",data.token);
+      
         console.log("Login successful:", data);
             setError("");
             setEmail("");
             setPassword("");
+
+        router.push("/dashboard");
         
         alert("Login successful!");
         } catch(error){
