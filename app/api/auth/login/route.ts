@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 export async function POST(request: Request){
 
     const {email, password}= await request.json();
+    console.log("Email received:", email);
 
     if(!email || !password){
         return NextResponse.json({ message: "All fields are required"}, { status:400});
@@ -17,6 +18,7 @@ export async function POST(request: Request){
     const usersCollection=db.collection("users");
 
     const user= await usersCollection.findOne({email});
+    console.log("User found:", user);
 
     if(!user){
         return NextResponse.json({ message: "User not found"}, { status:404});

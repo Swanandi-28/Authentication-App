@@ -14,8 +14,9 @@ export default function SignupPage() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => { 
+    const handleSubmit = async(e:React.FormEvent<HTMLFormElement>) => { 
       e.preventDefault();
+       try{
 
       setError("");
 
@@ -42,8 +43,26 @@ export default function SignupPage() {
         return;
       }
 
-      alert("Account created successfully!");
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {  
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, email, password })
+      });
 
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || "Failed to create account.");
+        return;
+      }
+
+      alert("Account created successfully!");
+       }catch(error){
+        console.error(error);
+        setError("An error occurred. Please try again later.");
+       }
     };
   return (
     <>

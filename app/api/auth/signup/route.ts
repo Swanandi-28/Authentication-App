@@ -15,6 +15,7 @@ export async function POST(request:Request) {
      console.log(password);
 
      await client.connect();
+     console.log("Connected to MongoDB");
 
      const db = client.db("auth-app");
      const usersCollection = db.collection("users");
@@ -32,7 +33,11 @@ export async function POST(request:Request) {
   }
      const hashedPassword = await bcrypt.hash(password, 10);
 
-     await usersCollection.insertOne({ name, email, password: hashedPassword, });
+     const result = await usersCollection.insertOne({ name, email, password: hashedPassword, });
+     const insertedUser = await usersCollection.findOne({ email });
+
+     console.log("Insert Result:", result);
+     console.log("Inserted User:", insertedUser);
 
     return NextResponse.json({ message: "User created successfully!"});
 }

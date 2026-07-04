@@ -49,10 +49,14 @@ export default function LoginPage() {
             return;
         }
 
+        localStorage.setIteam("token",data.token);
+
         console.log("Login successful:", data);
             setError("");
             setEmail("");
             setPassword("");
+        
+        alert("Login successful!");
         } catch(error){
             console.error(error);
             setError("An error occurred. Please try again later.");
